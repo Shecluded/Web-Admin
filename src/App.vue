@@ -1,31 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap");
 
-#nav a {
+body {
+  margin: 0;
+  padding: 0;
+  background: #e5e5e5;
+  font-family: "Roboto", sans-serif;
+}
+a {
   font-weight: bold;
   color: #2c3e50;
+  fill: white;
 }
 
-#nav a.router-link-exact-active {
+.router-link-exact-active {
   color: #42b983;
+  background: #e5e5e5;
+}
+.router-link-exact-active .logo {
+  background: #fc559b !important;
+}
+.router-link-exact-active .note {
+  background: #fc559b !important;
+}
+button {
+  outline: none;
+  box-shadow: none;
+}
+button:focus {
+  outline: none;
 }
 </style>

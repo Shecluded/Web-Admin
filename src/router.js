@@ -1,23 +1,47 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: "/",
+      name: "login",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Login.vue")
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      path: "/dashboard",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Overview.vue"),
+      children: [
+        {
+          path: "",
+          name: "dashboard",
+          component: () => import("@/views/Index.vue"),
+          meta: {
+            access: "auth"
+          }
+        },
+        {
+          path: "loan",
+          name: "loan",
+          component: () => import("@/views/Loan.vue"),
+          meta: {
+            access: "auth"
+          }
+        },
+        {
+          path: ":id/approval",
+          name: "approval",
+          component: () => import("@/views/Approval.vue"),
+          meta: {
+            access: "auth"
+          }
+        }
+      ]
     }
   ]
-})
+});
